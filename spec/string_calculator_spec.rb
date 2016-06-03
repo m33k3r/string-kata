@@ -40,7 +40,15 @@ RSpec.describe StringCalculator, "#add" do
   end
 
   it "negative numbers should fail" do
-    expect {StringCalculator.add('1\n2,-3')}.to raise_error('Negative numbers not allowed. The following exist: -3')
+    expect {StringCalculator.add('1\n2,-3')}.to raise_error('Negative numbers not allowed.')
+  end
+
+  it "negative numbers should fail" do
+    expect {StringCalculator.add('-1,2,-3')}.to raise_error('Negative numbers not allowed. The following exist: [-1, -3]')
+  end
+
+  it "returns 6 for 1, 2, 3, 1000, ignore greater than 1000" do
+    expect(StringCalculator.add('1, 2, 3, 1000')).to eql(6)
   end
 
 end

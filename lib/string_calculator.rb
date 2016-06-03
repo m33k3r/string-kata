@@ -1,14 +1,15 @@
 module StringCalculator
 
   def self.add(string)
-    # code to be tested goes here...
     if string.nil? || string.empty?
       0
     end
+    numbers = string.gsub('\n', ',').split(',').map(&:to_i)
+    if numbers.any? {|number| number < 0}
+      raise 'Negative numbers not allowed'
+    end
 
-    string.to_i
+    numbers.inject(0){|sum,x| sum + x }
   end
-
-  # ...and here when the above becomes too complex.
 
 end

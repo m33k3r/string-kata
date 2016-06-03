@@ -18,4 +18,29 @@ RSpec.describe StringCalculator, "#add" do
   it "returns 5 for 5" do
     expect(StringCalculator.add('5')).to eql(5)
   end
+
+  it "returns 3 for 1,2" do
+    expect(StringCalculator.add('1,2')).to eql(3)
+  end
+
+  it "returns 16 for 7,9" do
+    expect(StringCalculator.add('7,9')).to eql(16)
+  end
+
+  it "returns 100 for 50,50" do
+    expect(StringCalculator.add('50,50')).to eql(100)
+  end
+
+  it "returns 161 for 15,22,45,79" do
+    expect(StringCalculator.add('15,22,45,79')).to eql(161)
+  end
+
+  it "returns 6 for 1\n2,3" do
+    expect(StringCalculator.add('1\n2,3')).to eql(6)
+  end
+
+  it "negative numbers should fail" do
+    expect {StringCalculator.add('1\n2,-3')}.to raise_error('Negative numbers not allowed. The following exist: -3')
+  end
+
 end
